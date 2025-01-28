@@ -1,23 +1,30 @@
-import { useState } from 'react'
 
+import { useState } from 'react'
 import './App.css'
 
-function App() {
-  const [count, setCount] = useState(0)
 
+function App() {
   
+  const [title,setTitle]=useState("my name is meet")
+
+  function changeTitle({title}){
+    setTitle("my name is"+Math.random())
+  }
+
   return (
-    <CustomButton count={count} setCount={setCount}></CustomButton>
+         <>
+         <button onClick={changeTitle}>click me to change the title</button>
+         <Header title={title}></Header>
+         <Header title="meet1"></Header>
+         </>
   )
 }
 
 
-function CustomButton(props){
-  function onclickhandler(){
-    props.setCount(props.count+1);
-  }
 
-  return <button onClick={onclickhandler}>Counter {props.count}</button>
+function Header({title}){
+  return<div>
+    {title}
+  </div>
 }
-
 export default App
