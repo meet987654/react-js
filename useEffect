@@ -14,7 +14,7 @@ function Todo({ id }) {
 
   
   useEffect(() => {
-    axios.get("https://sum-server.100xdevs.com/todo?id=" + id)
+    axios.get("your data api" + id)
       .then(response => {
         setTodo(response.data.todo);
       });
