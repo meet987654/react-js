@@ -1,0 +1,31 @@
+import React from 'react';
+import { useRecoilState } from 'recoil';
+import { counterState } from './state';
+
+const Counter = () => {
+  const [count, setCount] = useRecoilState(counterState);
+//Count->useRecoilValue
+//setCount->useSetRecoilValue
+//useState->useRecoilState
+  return (
+    <div className="space-y-4">
+      <h2 className="text-xl">Count: {count}</h2>
+      <div className="space-x-2">
+        <button 
+          onClick={() => setCount(count + 1)} 
+          className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+        >
+          Increment
+        </button>
+        <button 
+          onClick={() => setCount(count - 1)} 
+          className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+        >
+          Decrement
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default Counter;
