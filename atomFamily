@@ -1,0 +1,14 @@
+import { atomFamily } from "recoil";
+import { TODOS } from "./todos";
+
+export const todosAtomFamily = atomFamily({
+  key: "todosAtomFamily",
+  default: (id) => {
+    return TODOS.find(todo => todo.id === id) || null;//Todos is file containing todos with id in an array
+  },
+});
+
+const todoAtom = atom({
+  key: "todoAtom",
+  default: 1,
+});
