@@ -1,0 +1,25 @@
+import React from "react";
+import { useRecoilValueLoadable } from "recoil";
+import { userSelector } from "./userSelector";
+
+const UserComponent = () => {
+  const userLoadable = useRecoilValueLoadable(userSelector);
+
+  if (userLoadable.state === "loading") {
+    return <p>Loading user data...</p>;
+  }
+
+  if (userLoadable.state === "hasError") {
+    return <p>Error fetching user data.</p>;
+  }
+
+  return (
+    <div className="p-4 border rounded shadow">
+      <h2 className="text-lg font-semibold">{userLoadable.contents.name}</h2>
+      <p>Email: {userLoadable.contents.email}</p>
+      <p>Phone: {userLoadable.contents.phone}</p>
+    </div>
+  );
+};
+
+export default UserComponent;
