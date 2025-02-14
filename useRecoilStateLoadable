@@ -1,0 +1,27 @@
+import React from "react";
+import { useRecoilStateLoadable } from "recoil";
+import { userState } from "./atoms";
+
+const UserProfile = () => {
+  const [userLoadable, setUser] = useRecoilStateLoadable(userState);
+
+  if (userLoadable.state === "loading") {
+    return <p>Loading user data...</p>;
+  }
+
+  if (userLoadable.state === "hasError") {
+    return <p>Error: {userLoadable.contents.message}</p>;
+  }
+
+  const user = userLoadable.contents;
+
+  return (
+    <div>
+      <h2>{user.name}</h2>
+      <p>Email: {user.email}</p>
+      <button onClick={() => setUser(userState)}>Reload</button>
+    </div>
+  );
+};
+
+export default UserProfile;
